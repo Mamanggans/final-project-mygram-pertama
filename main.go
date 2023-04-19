@@ -1,13 +1,11 @@
 package main
 
 import (
-	"log"
 	"os"
 
 	_ "mygram-byferdiansyah/docs"
 
 	"github.com/gin-gonic/gin"
-	"github.com/joho/godotenv"
 	swaggerFiles "github.com/swaggo/files"
 	ginSwagger "github.com/swaggo/gin-swagger"
 )
@@ -28,9 +26,9 @@ import (
 // @name                        Authorization
 // @description					        Description for what is this security definition being used
 func main() {
-	if err := godotenv.Load(); err != nil {
-		log.Fatal("Error loading .env file: ", err)
-	}
+	// if err := godotenv.Load(); err != nil {
+	// 	log.Fatal("Error loading .env file: ", err)
+	// }
 
 	// db := database.StartDB()
 
@@ -53,9 +51,9 @@ func main() {
 
 	routers.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 
-	if err := godotenv.Load(); err != nil {
-		log.Fatal("Error loading .env file: ", err)
-	}
+	// if err := godotenv.Load(); err != nil {
+	// 	log.Fatal("Error loading .env file: ", err)
+	// }
 
 	port := os.Getenv("PORT")
 
