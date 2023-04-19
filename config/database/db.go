@@ -20,7 +20,7 @@ package database
 // 	// host     = "localhost"
 // 	// port     = "5432"
 // 	// user     = "postgres"
-// 	// password = "jakarta2017"
+// 	// password = "tolong isi password db yang dituju"
 // 	// dbname   = "challengeTen"
 // 	// dialect  = "postgres"
 // )

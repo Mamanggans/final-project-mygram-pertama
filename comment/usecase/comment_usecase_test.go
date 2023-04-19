@@ -57,8 +57,8 @@ func TestCreate(t *testing.T) {
 
 	t.Run("add comment correctly", func(t *testing.T) {
 		tempMockAddComment := domain.Comment{
-			Message: "A comment",
-			ImageID: "image-123",
+			Message: "test comment",
+			ImageID: "testimg-123",
 		}
 
 		tempMockAddComment.ID = "comment-123"

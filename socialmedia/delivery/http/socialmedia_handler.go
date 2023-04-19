@@ -50,7 +50,7 @@ func (handler *socialMediaHandler) Get(ctx *gin.Context) {
 
 	if err = handler.socialMediaUseCase.Get(ctx.Request.Context(), &socialMedias, userID); err != nil {
 		ctx.AbortWithStatusJSON(http.StatusBadRequest, helpers.ResponseMessage{
-			Status:  "fail",
+			Status:  "fail cant find the id",
 			Message: err.Error(),
 		})
 
@@ -58,7 +58,7 @@ func (handler *socialMediaHandler) Get(ctx *gin.Context) {
 	}
 
 	ctx.JSON(http.StatusOK, helpers.ResponseData{
-		Status: "success",
+		Status: "congratulation you have successfully send your data, heres your data ",
 		Data: utils.GetedSocialMedia{
 			SocialMedias: socialMedias,
 		},
@@ -88,8 +88,8 @@ func (handler *socialMediaHandler) Create(ctx *gin.Context) {
 
 	if err = ctx.ShouldBindJSON(&socialMedia); err != nil {
 		ctx.AbortWithStatusJSON(http.StatusBadRequest, helpers.ResponseMessage{
-			Status:  "fail",
-			Message: err.Error(),
+			Status:  "error to find the id",
+			Message: "failed to find the id",
 		})
 
 		return

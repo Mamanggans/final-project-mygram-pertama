@@ -53,7 +53,7 @@ func (handler *commentHandler) Get(ctx *gin.Context) {
 
 	if err = handler.commentUseCase.Get(ctx.Request.Context(), &comments, userID); err != nil {
 		ctx.AbortWithStatusJSON(http.StatusBadRequest, helpers.ResponseMessage{
-			Status:  "fail",
+			Status:  "fail please try again",
 			Message: err.Error(),
 		})
 
@@ -61,7 +61,7 @@ func (handler *commentHandler) Get(ctx *gin.Context) {
 	}
 
 	ctx.JSON(http.StatusOK, helpers.ResponseData{
-		Status: "success",
+		Status: "congratulation its success",
 		Data:   comments,
 	})
 }
@@ -90,7 +90,7 @@ func (handler *commentHandler) Create(ctx *gin.Context) {
 
 	if err = ctx.ShouldBindJSON(&comment); err != nil {
 		ctx.AbortWithStatusJSON(http.StatusBadRequest, helpers.ResponseMessage{
-			Status:  "fail",
+			Status:  "its fail please try again or contact the admin",
 			Message: err.Error(),
 		})
 
@@ -101,7 +101,7 @@ func (handler *commentHandler) Create(ctx *gin.Context) {
 
 	if err = handler.imageUseCase.GetByID(ctx.Request.Context(), &image, imageID); err != nil {
 		ctx.AbortWithStatusJSON(http.StatusNotFound, helpers.ResponseMessage{
-			Status:  "fail",
+			Status:  "fail no image found",
 			Message: fmt.Sprintf("image with id %s doesn't exist", imageID),
 		})
 
@@ -112,7 +112,7 @@ func (handler *commentHandler) Create(ctx *gin.Context) {
 
 	if err = handler.commentUseCase.Create(ctx.Request.Context(), &comment); err != nil {
 		ctx.AbortWithStatusJSON(http.StatusBadRequest, helpers.ResponseMessage{
-			Status:  "fail",
+			Status:  "fail doesnt found the comment",
 			Message: err.Error(),
 		})
 
@@ -120,7 +120,7 @@ func (handler *commentHandler) Create(ctx *gin.Context) {
 	}
 
 	ctx.JSON(http.StatusCreated, helpers.ResponseData{
-		Status: "success",
+		Status: "congratulation, these are your data",
 		Data: utils.AddedComment{
 			ID:        comment.ID,
 			UserID:    comment.UserID,
@@ -158,7 +158,7 @@ func (handler *commentHandler) Edit(ctx *gin.Context) {
 
 	if err = ctx.ShouldBindJSON(&comment); err != nil {
 		ctx.AbortWithStatusJSON(http.StatusBadRequest, helpers.ResponseMessage{
-			Status:  "fail",
+			Status:  "fail to edit your data ",
 			Message: err.Error(),
 		})
 
@@ -172,7 +172,7 @@ func (handler *commentHandler) Edit(ctx *gin.Context) {
 
 	if image, err = handler.commentUseCase.Edit(ctx.Request.Context(), editedComment, commentID); err != nil {
 		ctx.AbortWithStatusJSON(http.StatusBadRequest, helpers.ResponseMessage{
-			Status:  "fail",
+			Status:  "fail to edit your data",
 			Message: err.Error(),
 		})
 
@@ -180,7 +180,7 @@ func (handler *commentHandler) Edit(ctx *gin.Context) {
 	}
 
 	ctx.JSON(http.StatusOK, helpers.ResponseData{
-		Status: "success",
+		Status: "success here your comment that you edited",
 		Data: utils.EditedComment{
 			ID:        image.ID,
 			UserID:    image.UserID,
@@ -210,7 +210,7 @@ func (handler *commentHandler) Delete(ctx *gin.Context) {
 
 	if err := handler.commentUseCase.Delete(ctx.Request.Context(), commentID); err != nil {
 		ctx.AbortWithStatusJSON(http.StatusBadRequest, helpers.ResponseMessage{
-			Status:  "fail",
+			Status:  "fail cannot find your id",
 			Message: err.Error(),
 		})
 

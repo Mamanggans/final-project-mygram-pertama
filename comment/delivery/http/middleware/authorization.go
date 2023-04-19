@@ -23,7 +23,7 @@ func Authorization(commentUseCase domain.CommentUseCase) gin.HandlerFunc {
 
 		if err = commentUseCase.GetByID(ctx.Request.Context(), &comment, commentID); err != nil {
 			ctx.AbortWithStatusJSON(http.StatusNotFound, helpers.ResponseMessage{
-				Status:  "fail",
+				Status:  "error cannot find your Id",
 				Message: fmt.Sprintf("comment with id %s doesn't exist", commentID),
 			})
 
@@ -32,7 +32,7 @@ func Authorization(commentUseCase domain.CommentUseCase) gin.HandlerFunc {
 
 		if comment.UserID != userID {
 			ctx.AbortWithStatusJSON(http.StatusUnauthorized, helpers.ResponseMessage{
-				Status:  "unauthorized",
+				Status:  "unauthorized please use another account",
 				Message: "you don't have permission to view or edit this comment",
 			})
 

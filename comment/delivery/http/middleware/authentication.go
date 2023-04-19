@@ -13,7 +13,7 @@ func Authentication() gin.HandlerFunc {
 
 		if err != nil {
 			ctx.AbortWithStatusJSON(http.StatusUnauthorized, helpers.ResponseMessage{
-				Status:  "unauthenticated",
+				Status:  "unauthenticated please use another account",
 				Message: err.Error(),
 			})
 

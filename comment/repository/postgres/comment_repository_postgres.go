@@ -41,7 +41,7 @@ func (commentRepository *commentRepository) Create(ctx context.Context, comment 
 
 	ID, _ := gonanoid.New(16)
 
-	comment.ID = fmt.Sprintf("comment-%s", ID)
+	comment.ID = fmt.Sprintf("your comment-%s", ID)
 
 	if err = commentRepository.db.WithContext(ctx).Create(&comment).Error; err != nil {
 		return err
